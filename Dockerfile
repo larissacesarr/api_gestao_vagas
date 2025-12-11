@@ -17,7 +17,7 @@ COPY . .
 RUN mvn clean install
 
 # Estágio final
-FROM openjdk:17-jdk-alpine
+FROM openjdk:17-oracle
 
 # Expõe a porta que a aplicação usará
 EXPOSE 8080
