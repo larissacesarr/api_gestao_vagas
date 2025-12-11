@@ -17,7 +17,7 @@ COPY . .
 RUN mvn clean install
 
 # Estágio final
-FROM amazoncorretto:17.0.7-alpine
+FROM openjdk:17-jdk-alpine
 
 # Expõe a porta que a aplicação usará
 EXPOSE 8080
