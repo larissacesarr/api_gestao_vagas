@@ -1,15 +1,29 @@
+# Estágio de construção
 FROM ubuntu:latest AS build
 
-RUN apt-get update
-Run apt-get install openjdk-17-jdk -y
+# Atualiza o repositório e instala OpenJDK e Maven
+RUN apt-get update && \
+    apt-get install -y openjdk-17-jdk maven && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Define o diretório de trabalho
+WORKDIR /app
+
+# Copia todos os arquivos do projeto para o contêiner
 COPY . .
 
-RUN apt-get install maven -y
+# Executa o Maven para construir a aplicação
 RUN mvn clean install
 
+# Estágio final
 FROM openjdk:17-jdk-slim
+
+# Expõe a porta que a aplicação usará
 EXPOSE 8080
 
-COPY --from=build /target/gestao-vagas-0.0.1.jar app.jar
+# Copia o JAR gerado do estágio de construção
+COPY --from=build /app/target/gestao-vagas-0.0.1.jar app.jar
 
-ENTRYPOINT [ "java", "-jar", "app.jar" ]
+# Comando para executar a aplicação
+ENTRYPOINT ["java", "-jar", "app.jar"]
