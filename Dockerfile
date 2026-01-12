@@ -25,7 +25,7 @@ EXPOSE 8080
 
 # Copia o JAR gerado do estágio de construção
 # Atenção: Verifique se o nome e o caminho do JAR estão corretos
-COPY --from=build /app/target/gestao-vagas-0.0.1.jar app.jar
+COPY --from=build /app/target/gestao_vagas-0.0.1-SNAPSHOT.jar app.jar
 
 # Comando para executar a aplicação
 ENTRYPOINT ["java", "-jar", "app.jar"]
