@@ -20,8 +20,11 @@ RUN export JAVA_HOME=/opt/java/openjdk && \
 # Estágio final
 FROM eclipse-temurin:17-jre
 
+# Define variável de ambiente para a porta
+ENV PORT=8080
+
 # Expõe a porta que a aplicação usará
-EXPOSE 8080
+EXPOSE ${PORT}
 
 # Copia o JAR gerado do estágio de construção
 # Atenção: Verifique se o nome e o caminho do JAR estão corretos
