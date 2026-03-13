@@ -51,7 +51,7 @@ class JobControllerTest {
                 .email("email@company.com")
                 .password("1234567890")
                 .username("COMPANY_USERNAME_TEST")
-                .nome("COMPANY_NAME_TEST").build();
+                .name("COMPANY_NAME_TEST").build();
 
         company = companyRepository.saveAndFlush(company);
 
